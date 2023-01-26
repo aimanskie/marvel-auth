@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom'
 import { useGlobalContext } from '../context'
 function Home() {
   const { user } = useGlobalContext()
-  console.log(user)
   return (
     <>
       {user && <Redirect to='/dashboard' />}
