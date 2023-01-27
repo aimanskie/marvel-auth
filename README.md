@@ -1,6 +1,6 @@
 # marvel-auth
 
-### This is a nice project by marvel on auth with jwt accesstoken and refreshtoken.
+### This is a nice project by marvel on auth with jwt accesstoken and refreshtoken. This is a React app with Node js server and Mongo DB as database
 
 ### Token created in login after validation and server sends accesstoken and refreshtoken and stored in DB
 
