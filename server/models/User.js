@@ -4,16 +4,6 @@ const bcrypt = require('bcryptjs')
 
 const UserSchema = new mongoose.Schema(
   {
-    accessToken: {
-      type: String,
-      default: '',
-      trim: true,
-    },
-    refreshToken: {
-      type: String,
-      default: '',
-      trim: true,
-    },
     userName: {
       type: String,
       required: [true, 'Please provide name'],
@@ -62,14 +52,11 @@ const UserSchema = new mongoose.Schema(
     birthday: {
       type: Date,
     },
-    isValid: { type: Boolean, default: true },
   },
   { timestamps: true }
 )
 
 UserSchema.pre('save', async function () {
-  // console.log(this.modifiedPaths());
-  // console.log(this.isModified('name'));
   if (!this.isModified('password')) return
   const salt = await bcrypt.genSalt(10)
   this.password = await bcrypt.hash(this.password, salt)

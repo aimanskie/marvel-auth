@@ -1,5 +1,6 @@
 const { isTokenValid } = require('../utils')
 const { attachCookiesToResponse } = require('../utils')
+const Token = require('../models/Token')
 
 const authenticateUser = async (req, res, next) => {
   const { refreshToken, accessToken } = req.signedCookies
@@ -12,8 +13,9 @@ const authenticateUser = async (req, res, next) => {
     }
 
     const payload = isTokenValid(refreshToken)
-    const existingToken = await User.findOne({
-      _id: payload.user.userId,
+
+    const existingToken = await Token.findOne({
+      user: payload.user.userId,
       refreshToken: payload.refreshToken,
     })
 
